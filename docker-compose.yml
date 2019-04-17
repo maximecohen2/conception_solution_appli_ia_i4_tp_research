@@ -1,0 +1,19 @@
+version: "3"
+services:
+  malmo:
+    image: andkram/malmo
+    ports:
+      # VNC connection
+      - 5901:5901
+      # VNC graphical
+      - 6901:6901
+      # Jupyter
+      - 8822:8888
+    environment:
+      VNC_PW: vncpassword
+    networks:
+      - minecraft
+
+networks:
+  minecraft:
+
