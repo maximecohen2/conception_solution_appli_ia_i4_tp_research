@@ -1,5 +1,13 @@
 Rapport sur les essais.
 
+https://github.com/Microsoft/malmo/blob/master/scripts/python-wheel/README.md
+
+Lancer cette commande pour travailler:
+
+```bash
+docker run -it -p 5901:5901 -p 6901:6901 -p8888:8888 -e VNC_PW=vncpassword andkram/malmo
+```
+
 Commenter le code.
 
 https://github.com/crowdAI/marLo
