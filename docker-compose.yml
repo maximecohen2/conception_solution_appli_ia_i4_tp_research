@@ -1,7 +1,8 @@
 version: "3"
 services:
   malmo:
-    image: andkram/malmo
+    build: docker/malmo
+    container_name: malmo
     ports:
       # VNC connection
       - 5901:5901
