@@ -1,3 +1,5 @@
+# Research
+
 Rapport sur les essais.
 
 https://github.com/Microsoft/malmo/blob/master/scripts/python-wheel/README.md
@@ -5,7 +7,7 @@ https://github.com/Microsoft/malmo/blob/master/scripts/python-wheel/README.md
 Lancer cette commande pour travailler:
 
 ```bash
-docker run -it -p 5901:5901 -p 6901:6901 -p8888:8888 -e VNC_PW=vncpassword andkram/malmo
+docker-compose up -d --build
 ```
 
 Commenter le code.
@@ -45,3 +47,34 @@ Diego Perez-Liebana, Katja Hofmann, Sharada Prasanna Mohanty, Noburu Kuno, Andre
 + Value (V): The expected long-term return with discount, as opposed to the short-term reward R. Vπ(s) is defined as the expected long-term return of the current state under policy π. We discount rewards, or lower their estimated value, the further into the future they occur. See discount factor. And remember Keynes: “In the long run, we are all dead.” That’s why you discount future rewards.
 + Q-value or action-value (Q): Q-value is similar to Value, except that it takes an extra parameter, the current action a. Qπ(s, a) refers to the long-term return of the current state s, taking action a under policy π. Q maps state-action pairs to rewards. Note the difference between Q and policy.
 + Trajectory: A sequence of states and actions that influence those states. From the Latin “to throw across.” The life of an agent is but a ball tossed high and arching through space-time.
+
+### Exemple Code Malmo
+
+```python
+#!/usr/bin/env python
+# $MALMO_MINECRAFT_ROOT/launchClient.sh -port 10000
+
+import marlo
+client_pool = [('127.0.0.1', 10000)]
+join_tokens = marlo.make('MarLo-FindTheGoal-v0',
+                          params={
+                            "client_pool": client_pool
+                          })
+# As this is a single agent scenario,
+# there will just be a single token
+assert len(join_tokens) == 1
+join_token = join_tokens[0]
+
+env = marlo.init(join_token)
+
+observation = env.reset()
+
+done = False
+while not done:
+  _action = env.action_space.sample()
+  obs, reward, done, info = env.step(_action)
+  print("reward:", reward)
+  print("done:", done)
+  print("info", info)
+env.close()
+```
