@@ -1,4 +1,5 @@
 version: "3"
+
 services:
   malmo:
     build: docker/malmo
@@ -12,6 +13,8 @@ services:
       - 8822:8888
     environment:
       VNC_PW: vncpassword
+    volumes:
+      - ./app:/home/malmo/app
     networks:
       - minecraft
 
