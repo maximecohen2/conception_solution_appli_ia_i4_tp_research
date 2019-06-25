@@ -78,3 +78,7 @@ while not done:
   print("info", info)
 env.close()
 ```
+
+https://github.com/zenoengine/QLearning-Minecraft-Malmo
+
+https://github.com/ilovecocolade/Reinforcement-Learning-algorithms-Q-MC-for-MARLO-Minecraft-
